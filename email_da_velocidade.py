@@ -4,6 +4,7 @@ import smtplib
 import os
 import commands
 from email.mime.text import MIMEText
+import time
 
 def envia_email(texto):
 	informacao = "A velocidade da rede esta em " + str(texto) +" Mbit/s" #corpo do email
@@ -34,6 +35,8 @@ def retira_dados(dado): #funcao que pega apenas a velocidade
 
 #_____________MAIN_______________#
 
-aux = verifica_rede()
-envia_email(retira_dados(aux[1]))
+while True:
+	aux = verifica_rede()
+	envia_email(retira_dados(aux[1]))
+	time.sleep(43200) #aguarda 12 horas para enviar o proximo
 
